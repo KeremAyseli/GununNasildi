@@ -1,0 +1,72 @@
+﻿@using GununNasıldı.Models.Entity;
+@model kisiTipi
+@{
+    ViewBag.Title = "profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    gununnasildiEntities4 yazılar = new gununnasildiEntities4();
+    List<yaziTipi> kisininYazilari = new List<yaziTipi>();
+    var yazı= yazılar.yazilar.Where(yaziId => yaziId.kisiId == Model.kisiId).ToList();
+    for(int i = 0; i < yazı.Count; i++)
+    {
+        kisininYazilari.Add(new yaziTipi(yazı[i].yaziIcerikAdres,Server));
+    }
+}
+<div class="row arkaPlan rounded">
+    <div class=" col-md-6">
+        <img src="@Url.Content("~/resimler/"+Model.kisiResimAdres)" class=" hizalama" />
+    </div>
+        <div class="col-md-7">
+            <p class="isimSoyisim display-2">@Model.kisiIsim&nbsp;@Model.kisiSoyisim</p>
+        </div>
+</div>
+<h1>Yazılar</h1>
+<hr class="çizgi">
+<p>@{
+    for(int i = 0; i < kisininYazilari.Count; i++)
+    {
+        System.Diagnostics.Debug.WriteLine( yazı[i].yaziIcerikAdres+"deneme");
+                <a class="yazilar" href="@Url.Action("yaziOku","yazilar",new { yaziId=kisininYazilari[i].yaziId})">@kisininYazilari[i].yaziBaslik</a><br />
+                <hr class="çizgi" style="color:green;width:35%"/>
+            }
+}</p>
+
+<style>
+    .isimSoyisim {
+        color: #aff5ca;
+        padding-left: 30%;
+        font-size:81px;
+        z-index:2;
+        position:fixed;
+        
+    }
+    .arkaPlan {
+        margin-top: 3%;
+        box-shadow: 1px 1px 6px grey;
+        background-color: #4eb056;
+        border-radius: 25px;
+        height: 300px;
+        width: 100%;
+    }
+    .hizalama {
+        margin-left: 1%;
+        margin-top: 1%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+    .çizgi {
+        width: 100%;
+        text-align: left;
+        margin-left: 0;
+        color: tomato;
+        border:solid;
+        border-radius:20px;
+    }
+    .yazilar {
+        color: #75bb73;
+        text-decoration: none;
+        font-size:55px;
+        padding-top:20px;
+    }
+   
+</style>

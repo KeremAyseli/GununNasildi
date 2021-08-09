@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "yazıYaz";
+   System.Diagnostics.Debug.WriteLine("deneme");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-group">
+    <h3>Yazı Başlığı</h3>
+    <input type="text" class="form-control" name="yazıBaşlık" id="yaziBaslik" />
+    <h3>Yazı</h3>
+    <textarea class="form-control" id="yazi" style="height:600px" ></textarea>
+    <button type="submit" class="btn btn-success" style="margin-top:3%" onclick="kaydet()">Gönder</button>
+</div>
+<script>
+    function kaydet() {
+        var yaziBaslik = $("#yaziBaslik").val();
+        var yazi = $("#yazi").val();
+        //Kullanıcı id değerini daha önce sayfaya yönlendirilirken verilen değerden alıyorum
+        var kisiId =@Request.Cookies["ID"].Value;
+        var yaziTarih = Date.now();
+        //Bilgileri burada json hale getiriyorum.
+        var bilgiler = JSON.stringify({
+            "kisiId": kisiId,
+            "yaziBaslik": yaziBaslik,
+            "yazi": yazi,
+            "yaziTarih": yaziTarih
+        });
+        //Sayfaya gönderme işlemlerini burada yapıyorum
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("yaziKaydet","yazilar")",
+            data: bilgiler,
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            //Eğer gönderme işlemi başarılı olursa yapılacaklar.
+            success: function (response) {
+                //Sunucunun döndürdüğü değer True ise yapılacaklar.
+                if (response == "True") {
+                    alert("Kayıt işlemi başarılı");
+                }
+                //Diğer değerler ise yapılacaklar.
+                else {
+
+                    alert("Hata" + response);
+
+                }
+            },
+            //Gönderme işlemi başarısız olursa yapılacaklar.
+            error: function (msg) {
+                alert(msg);
+            }
+
+        });
+
+    }
+</script>

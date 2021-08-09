@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "girisYap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    
+    <div class="row" >
+        <div class="col-sm"></div>
+        <div class="col-sm-7 formArkaPlan border">
+            <img src="~/Kaynaklar/1486564409-lock_81509.png" class="mx-auto d-block resim " />
+            <div class="girisElemanları">
+                <input type="text" name="kisiIsim" id="isim" class="form-control girisler center-block" placeholder="isiminiz" />
+                <br>
+                <input type="password" name="sifre" id="sifre" class="form-control girisler  center-block" placeholder="şifre" />
+                <br />
+                <button type="submit" onclick="giris()" class="btn btn-lg btn-primary center-block">girisyap</button>
+            </div>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+    
+</div>
+
+<script>
+    function giris() {
+        var isim1 = $("#isim").val();
+        var sifre1 = $("#sifre").val();
+        var bilgiler = JSON.stringify({
+            "isim": isim1,
+            "sifre": sifre1
+        });
+        console.log(bilgiler);
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("giris","Kullanici")",
+            data: bilgiler,
+            cache:false,
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response == "True") {
+                    console.log(response);
+                    window.location.href = "@Url.Action("Index","Anasayfa")";
+                }
+                else {
+                    console.log(response);
+                    alert("Hatalı giriş yaptınız");
+                }
+            },
+            error: function (msg) { alert(msg); }
+        })
+    }
+</script>
+<style>
+    .formArkaPlan {
+        margin-top: 7%;
+        margin-bottom: 7%;
+        background-color: white;
+        box-shadow: gray 1px 1px 15px;
+        height: 500px;
+    }
+    
+    .girisElemanları{
+        padding:15%;
+    }
+    .yazilar {
+        color: #14c8f9;
+        padding-left:10%;
+    }
+    .resim{
+        padding-top:50px;
+    }
+</style>
+

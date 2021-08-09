@@ -1,0 +1,13 @@
+﻿@model GununNasıldı.Models.Entity.kisiler
+@{
+    ViewBag.Title = "profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("girisYap", "Home", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(kisi => kisi.kisiId);
+    </div>
+}
+

@@ -1,0 +1,30 @@
+{
+    "yorumAdres": "/yorumlar/naidvfcnmkrrtsrpkb/Veri228-832.json",
+    "YorumId": "kjoypksuurouvgpnab",
+    "yorumYazısı": "yazı olmuş",
+    "Yorumyanıtlar": [
+        {
+            "yanitId": "ynsdifgsjhvndbpjmb",
+            "YanitlayanKisi": {
+                "kisiId": 1,
+                "kisiIsim": "kerem",
+                "kisiSoyisim": "ayseli",
+                "kisiEposta": "keremayseli@outlook.com",
+                "YaziId": 1,
+                "kisiResimAdres": "1827522_620x410.jpg",
+                "sifre": "123"
+            },
+            "yanitYazisi": "evet"
+        }
+    ],
+    "YorumYapılmaTarihi": "2021-06-20T04:18:49.8330288+03:00",
+    "YorumuYapanKisi": {
+        "kisiId": 1,
+        "kisiIsim": "kerem",
+        "kisiSoyisim": "ayseli",
+        "kisiEposta": "keremayseli@outlook.com",
+        "YaziId": 1,
+        "kisiResimAdres": "1827522_620x410.jpg",
+        "sifre": "123"
+    }
+}

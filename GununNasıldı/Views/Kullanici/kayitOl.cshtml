@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "kayitOl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>kayitOl</h2>
+<div class="form-group row">
+    <label for="isim" class="col-sm-2 col-form-label">İsiminiz</label>
+    <div class="col-sm-10">
+        <input id="isim" type="text" placeholder="İsminiz" class="form-control" />
+        </div>
+    </div>
+<div class="form-group row">
+    <label for="soyisim" class="col-sm-2 col-form-label">Soyisiminiz</label>
+    <div class="col-sm-10">
+        <input id="soyisim" type="text" placeholder="Soyisminiz" class="form-control" />
+    </div>
+    </div>
+    <div class="form-group row">
+        <label for="Eposta" class="col-sm-2 col-form-label">E-posta adresiniz</label>
+        <div class="col-sm-10">
+            <input id="Eposta" type="email" placeholder="E-Postanız" class="form-control" />
+        </div>
+        </div>
+        <div class="form-group row">
+            <label for="resim" class="col-sm-2 col-form-label">Resim seçiniz</label>
+            <div class="col-sm-10">
+                <input id="resim" type="file" class="form-control-file" />
+            </div>
+            </div>
+            <div class="form-group row">
+                <label for="sifre" class="col-sm-2 col-form-label">Sifreniz</label>
+                <div class="col-sm-10">
+                    <input id="sifre" type="password" placeholder="Sifreniz" class="form-control" />
+                </div>
+            </div>
+
+<button class="btn btn-primary" onclick="kayıtOl()">Kayıt Ol</button> 
+
+<script>
+    function kayıtOl() {
+        
+        //Formdata nesenesinin oluşturulması
+        var data = new FormData();
+        
+        //Verilerin formdata nesnesine eklenmesi
+
+        var resim = $("#resim").get(0).files;
+        if (resim['length']>0) {
+            console.log($("#resim")[0].files);
+            console.log("tıklandı");
+            data.append("resim", $("#resim")[0].files[0]);
+            data.append("isim", $("#isim").val());
+            data.append("soyisim", $("#soyisim").val());
+            data.append("Eposta", $("#Eposta").val());
+            data.append("sifre", $("#sifre").val());
+            $.ajax({
+                url: '@Url.Action("kayitOl","Kullanici")',
+                data: data,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                cache: false,
+                method: 'POST',
+                success: function (result) {
+                    if (result == "True") { window.location = "@Url.Action("girisYap","Kullanici")"; }
+                    else { alert("Bu kullanıcı sistemde mevcut"); }
+                },
+                error:
+                    function () {
+                        alert("Bir hata meydana geldi");
+                    }
+            });
+        }
+    }
+
+
+</script>

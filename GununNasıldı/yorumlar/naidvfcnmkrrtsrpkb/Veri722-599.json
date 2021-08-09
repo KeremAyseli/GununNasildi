@@ -1,0 +1,43 @@
+{
+    "yorumAdres": "/yorumlar/naidvfcnmkrrtsrpkb/Veri722-599.json",
+    "YorumId": "oelgfbbniyhkbgadoa",
+    "yorumYazısı": "güzel yazı olmuş",
+    "Yorumyanıtlar": [
+        {
+            "yanitId": "vinipbcmujddusygob",
+            "YanitlayanKisi": {
+                "kisiId": 1,
+                "kisiIsim": "kerem",
+                "kisiSoyisim": "ayseli",
+                "kisiEposta": "keremayseli@outlook.com",
+                "YaziId": 1,
+                "kisiResimAdres": "1827522_620x410.jpg",
+                "sifre": "123"
+            },
+            "yanitYazisi": "a"
+        },
+        {
+            "yanitId": "shetrhfbjurteybudb",
+            "YanitlayanKisi": {
+                "kisiId": 1,
+                "kisiIsim": "kerem",
+                "kisiSoyisim": "ayseli",
+                "kisiEposta": "keremayseli@outlook.com",
+                "YaziId": 1,
+                "kisiResimAdres": "1827522_620x410.jpg",
+                "sifre": "123"
+            },
+            "yanitYazisi": "deneme"
+        }
+    ],
+    "YorumYapılmaTarihi": "2021-06-20T04:02:50.599536+03:00",
+    "YorumuYapanKisi": {
+        "kisiId": 1,
+        "kisiIsim": "kerem",
+        "kisiSoyisim": "ayseli",
+        "kisiEposta": "keremayseli@outlook.com",
+        "YaziId": 1,
+        "kisiResimAdres": "1827522_620x410.jpg",
+        "sifre": "123"
+    }
+}

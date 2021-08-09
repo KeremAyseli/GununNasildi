@@ -1,0 +1,56 @@
+{
+    "yorumAdres": "/yorumlar/naidvfcnmkrrtsrpkb/Veri646-840.json",
+    "YorumId": "sarigvslymouyajtba",
+    "yorumYazısı": "Güzel yazmışsınız",
+    "Yorumyanıtlar": [
+        {
+            "yanitId": "cgtyuagbuyscihkhab",
+            "YanitlayanKisi": {
+                "kisiId": 1,
+                "kisiIsim": "kerem",
+                "kisiSoyisim": "ayseli",
+                "kisiEposta": "keremayseli@outlook.com",
+                "YaziId": 1,
+                "kisiResimAdres": "1827522_620x410.jpg",
+                "sifre": "123"
+            },
+            "yanitYazisi": "Harika"
+        },
+        {
+            "yanitId": "juhrusddonbjhfhkdb",
+            "YanitlayanKisi": {
+                "kisiId": 1,
+                "kisiIsim": "kerem",
+                "kisiSoyisim": "ayseli",
+                "kisiEposta": "keremayseli@outlook.com",
+                "YaziId": 1,
+                "kisiResimAdres": "1827522_620x410.jpg",
+                "sifre": "123"
+            },
+            "yanitYazisi": "Güzel"
+        },
+        {
+            "yanitId": "fpdlihtsajnlgvffeb",
+            "YanitlayanKisi": {
+                "kisiId": 1,
+                "kisiIsim": "kerem",
+                "kisiSoyisim": "ayseli",
+                "kisiEposta": "keremayseli@outlook.com",
+                "YaziId": 1,
+                "kisiResimAdres": "1827522_620x410.jpg",
+                "sifre": "123"
+            },
+            "yanitYazisi": "Merhabalar"
+        }
+    ],
+    "YorumYapılmaTarihi": "2021-06-20T04:16:36.8406154+03:00",
+    "YorumuYapanKisi": {
+        "kisiId": 1,
+        "kisiIsim": "kerem",
+        "kisiSoyisim": "ayseli",
+        "kisiEposta": "keremayseli@outlook.com",
+        "YaziId": 1,
+        "kisiResimAdres": "1827522_620x410.jpg",
+        "sifre": "123"
+    }
+}

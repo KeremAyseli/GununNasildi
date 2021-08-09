@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="gununnasildiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="gununnasildiModelStoreContainer">
+    <EntitySet Name="kisiler" EntityType="gununnasildiModel.Store.kisiler" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="yazilar" EntityType="gununnasildiModel.Store.yazilar" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="kisiler">
+    <Key>
+      <PropertyRef Name="kisiId" />
+    </Key>
+    <Property Name="kisiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kisiIsim" Type="nvarchar" Nullable="false" MaxLength="55" />
+    <Property Name="kisiSoyisim" Type="nvarchar" Nullable="true" MaxLength="55" />
+    <Property Name="kisiEposta" Type="varchar(max)" Nullable="true" />
+    <Property Name="YaziId" Type="int" Nullable="true" />
+    <Property Name="kisiResimAdres" Type="varchar(max)" Nullable="true" />
+    <Property Name="sifre" Type="nvarchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="yazilar">
+    <Key>
+      <PropertyRef Name="yaziId" />
+    </Key>
+    <Property Name="yaziId" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="yaziIcerikAdres" Type="varchar(max)" Nullable="false" />
+    <Property Name="kisiId" Type="int" Nullable="true" />
+  </EntityType>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gununnasildiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kisiler">
+          <Key>
+            <PropertyRef Name="kisiId" />
+          </Key>
+          <Property Name="kisiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kisiIsim" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kisiSoyisim" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="kisiEposta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="YaziId" Type="Int32" />
+          <Property Name="kisiResimAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="yazilar">
+          <Key>
+            <PropertyRef Name="yaziId" />
+          </Key>
+          <Property Name="yaziId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="yaziIcerikAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kisiId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="gununnasildiEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kisiler" EntityType="Self.kisiler" />
+          <EntitySet Name="yazilar" EntityType="Self.yazilar" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gununnasildiModelStoreContainer" CdmEntityContainer="gununnasildiEntities4">
+    <EntitySetMapping Name="kisiler">
+      <EntityTypeMapping TypeName="IsTypeOf(gununnasildiModel.kisiler)">
+        <MappingFragment StoreEntitySet="kisiler">
+          <ScalarProperty Name="kisiId" ColumnName="kisiId" />
+          <ScalarProperty Name="kisiIsim" ColumnName="kisiIsim" />
+          <ScalarProperty Name="kisiSoyisim" ColumnName="kisiSoyisim" />
+          <ScalarProperty Name="kisiEposta" ColumnName="kisiEposta" />
+          <ScalarProperty Name="YaziId" ColumnName="YaziId" />
+          <ScalarProperty Name="kisiResimAdres" ColumnName="kisiResimAdres" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yazilar">
+      <EntityTypeMapping TypeName="IsTypeOf(gununnasildiModel.yazilar)">
+        <MappingFragment StoreEntitySet="yazilar">
+          <ScalarProperty Name="yaziId" ColumnName="yaziId" />
+          <ScalarProperty Name="yaziIcerikAdres" ColumnName="yaziIcerikAdres" />
+          <ScalarProperty Name="kisiId" ColumnName="kisiId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

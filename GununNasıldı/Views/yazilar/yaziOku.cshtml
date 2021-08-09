@@ -1,0 +1,213 @@
+﻿@using GununNasıldı.Models.Entity;
+@using System.Diagnostics;
+@model yazilar
+@{
+    ViewBag.Title = "yaziOku";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //YazıTipi nesnesinin oluşturulması
+    yaziTipi yazi = new yaziTipi(Model.yaziIcerikAdres, Server);
+    //KisiTipi nesnesinin oluşturulması
+    kisiTipi yazanKisi = new kisiTipi(Model.kisiId);
+    //YorumTipi nesnesinin oluşturulması
+    yorumTipi yorum = new yorumTipi();
+    //YorumTipi nesnesenin oluşturulduktan sonra yorum okuma metodunu kullanıp,okunan tüm yorumları yorumTipi listeye atılması.
+    List<yorumTipi> yorumlar = yorum.yorumOku(Server, yazi.yaziId);
+    string yaziIsimi = yazi.yaziId.ToString();
+
+
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="card bg-dark kisiKart rounded" style="width:400px">
+            <div class="card-body">
+                <img class="rounded-circle card-img figure-img" src="@Url.Content("~/resimler/"+yazanKisi.kisiResimAdres)" alt="Card image cap">
+                <p class="card-title kisikartYazı">
+                    <a href="@Url.Action("profil","Kullanici",new { ID=yazanKisi.kisiId})"
+                       class="card-header display-4" style="margin:20px;">@yazanKisi.kisiIsim&nbsp;@yazanKisi.kisiSoyisim</a>
+                </p>
+            </div>
+        </div>
+        <h1 style="padding-top:10%" class="display-1">@yazi.yaziBaslik</h1>
+        <p>@yazi.yazi</p>
+    </div>
+    <div class="row">
+        <div class="card m-5 w-100">
+            <div class="card-header"><a class="nav-link" href="@Url.Action("profil","Kullanici",new {ID=Request.Cookies["ID"].Value})">@Request.Cookies["Isim"].Value&nbsp;@Request.Cookies["Soyisim"].Value olarak yorum yap</a></div>
+            <div class="row">
+                <div class="col-md-2">
+                    <img class="rounded float-left img-fluid" style="max-height: 150px; max-width:150px;" src="@Url.Content("~/resimler/"+Request.Cookies["ResimAdres"].Value)" />
+                </div>
+
+
+                <div class="col-md-10">
+                    <input id="YorumYap" type="text" placeholder="Yorum Yap" class=" form-control ">
+                    <button onclick="yorumYap()" class="btn btn-primary">Yorum yap</button>
+                </div>
+            </div>
+        </div>
+
+        @if (!(yorumlar.Count < 1))
+        {
+            for (int i = 0; i < yorumlar.Count; i++)
+            {
+                if (yorumlar[i].YorumuYapanKisi == null)
+                {
+                    Debug.WriteLine("boş yorum");
+                }
+                else
+                {
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="@Url.Content("~/resimler/" + yorumlar[i].YorumuYapanKisi.kisiResimAdres)" class="img img-rounded img-fluid" />
+                </div>
+                <div class="col-md-10">
+                    <p>
+                        <a class="float-left" href="@Url.Action("profil","Kullanici",new {ID=yorumlar[i].YorumuYapanKisi.kisiId})"><strong>@yorumlar[i].YorumuYapanKisi.kisiIsim&nbsp;@yorumlar[i].YorumuYapanKisi.kisiSoyisim</strong></a>
+
+                    </p>
+                    <div class="clearfix"></div>
+                    <p>@yorumlar[i].yorumYazısı</p>
+
+                </div>
+                @if (yorumlar[i].Yorumyanıtlar != null)
+                {
+                    for (int x = 0; x < yorumlar[i].Yorumyanıtlar.Count; x++)
+                    {
+                        <div class="card card-inner">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="@Url.Content("~/resimler/" + yorumlar[i].Yorumyanıtlar[x].YanitlayanKisi.kisiResimAdres)" class="img img-rounded img-fluid" />
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p><a href="@Url.Action("profil","Kullanici",new {ID=yorumlar[i].Yorumyanıtlar[x].YanitlayanKisi.kisiId})"><strong>@yorumlar[i].Yorumyanıtlar[x].YanitlayanKisi.kisiIsim&nbsp;@yorumlar[i].Yorumyanıtlar[x].YanitlayanKisi.kisiSoyisim</strong></a></p>
+                                        <p>@yorumlar[i].Yorumyanıtlar[x].yanitYazisi</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <p class="float-right btn btn-outline-primary ml-2">
+            <i class="fa fa-reply"></i> <input class="form-control" id="Yanit @i" type="text" placeholder="Yanıtla">
+            <button class="btn btn-success" onclick="yanitYap('@yorumlar[i].yorumAdres',@i)">Yanıtla</button>
+        </p>
+    </div>
+
+
+                }
+            }
+        }
+    </div>
+</div>
+
+
+<style>
+    .yorumlar {
+        box-shadow: grey 1px 1px 7px;
+        margin-top:100px;
+        width:inherit;
+        height:inherit;
+    }
+
+    .yanıtlar {
+        padding-left: 2%;
+        width: inherit;
+        height: inherit;
+    }
+
+    .kisiKart {
+        float: left;
+        margin-right: 3%;
+        margin-top: 10%;
+        background-color: #f5f6f6;
+        box-shadow: 1px 1px 6px grey;
+        border-radius: 20px;
+        width: inherit;
+        height: inherit;
+    }
+
+    .kisikartResim {
+        width: 100px;
+        height: 150px;
+        margin-left: 10%;
+    }
+
+    .kisikartYazı {
+        color: #3408a5;
+        float: right;
+    }
+</style>
+<script>
+    function yorumYap() {
+        var yorumYazisi = $("#YorumYap").val();
+        var yorumuYapanKisiId =@Request.Cookies["ID"].Value;
+        var yazıIsim = "@yazi.yaziId";
+        console.log("@yazi.yaziId");
+        console.log(yorumuYapanKisiId);
+        var bilgiler = JSON.stringify({
+            yorumYazisi: yorumYazisi,
+            yorumuYapanKisiId: yorumuYapanKisiId,
+            yaziIsim: yazıIsim
+        });
+        console.log(bilgiler);
+        $.ajax({
+            url: '@Url.Action("YorumYap", "Yorumlar")',
+            data: bilgiler,
+            contentType: 'application/json; charset=utf-8',
+            cache: false,
+            method: 'POST',
+            success:
+                function (result) {
+                    if (result) { console.log(result); console.log("Yorum Yapıldı"); }
+                    else { console.log(result); console.log("Hata"); }
+                },
+            error:
+                function (result) {
+                    console.log(result);
+                    alert("Bir hata meydana geldi,lütfen daha sonra tekrar deneyin.");
+                }
+
+
+        });
+
+    }
+
+    function yanitYap(yorumAdres, yanıtIndeksi) {
+        var yanıts = document.getElementById("Yanit " + yanıtIndeksi).value;
+        console.log(yanıts);
+        var yanitiYapanKisiId =@Request.Cookies["ID"].Value;
+        var bilgiler = JSON.stringify({
+            "yanit": yanıts,
+            "yorumAdres": yorumAdres,
+            "yanitiYapanKisiId": yanitiYapanKisiId
+        });
+        console.log(bilgiler);
+         $.ajax({
+            url: '@Url.Action("YanitYap", "Yorumlar")',
+            data: bilgiler,
+            contentType: 'application/json; charset=utf-8',
+            cache: false,
+            method: 'POST',
+            success:
+                function (result) {
+                    if (result) { console.log(result); console.log("Yanit Yapıldı"); }
+                    else { console.log(result); console.log("Hata"); }
+                },
+            error:
+                function (result) {
+                    console.log(result);
+                    alert("Bir hata meydana geldi,lütfen daha sonra tekrar deneyin.");
+                }
+
+
+        });
+
+    }
+</script>
