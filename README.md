@@ -7,14 +7,14 @@ This site is a personel diary.You write your day ,and somebody read it then they
 
 # Inside from website
 
-### Profile
+### Profile Page
 ![Profile](https://raw.githubusercontent.com/KeremAyseli/GununNasildi/master/GununNas%C4%B1ld%C4%B1/ReadmeSoruce/profil.png)
-### Example Artcile
+### Example Artcile Page
 ![Example article](https://raw.githubusercontent.com/KeremAyseli/GununNasildi/master/GununNas%C4%B1ld%C4%B1/ReadmeSoruce/yaz%C4%B1Okuma.png)
 
-### Sample Writing Screen
+### Sample Writing Page
 ![sample writing screen](https://raw.githubusercontent.com/KeremAyseli/GununNasildi/master/GununNas%C4%B1ld%C4%B1/ReadmeSoruce/yaz%C4%B1Yaz.png)
 
-### Register Screen
+### Register Page
 ![Register Screen](https://raw.githubusercontent.com/KeremAyseli/GununNasildi/master/GununNas%C4%B1ld%C4%B1/ReadmeSoruce/Kay%C4%B1tOlEkran%C4%B1.png)
 
